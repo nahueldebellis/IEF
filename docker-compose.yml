@@ -1,0 +1,28 @@
+version: "3"
+services:
+  db:
+    image: postgres
+    networks:
+      - backend
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000 
+    volumes:
+      - .:/IEF  
+      - static:/copycat/static
+      - media:/copycat/media
+    networks:
+      - backend
+    ports:
+      - "80:8000"
+    environment:
+      - SQL_USER:postgres
+      - SQL_PASSWORD:postgres
+    depends_on:
+      - db
+volumes:
+  static:
+  media:
+networks:
+  backend:
+    driver: bridge  
