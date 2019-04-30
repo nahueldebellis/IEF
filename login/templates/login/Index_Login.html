@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	{% load static %}
+	<script src="{% static 'login/js/jquery-3.4.0.min.js' %}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.0/dist/jquery.validate.min.js"></script>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/solid.css" integrity="sha384-QokYePQSOwpBDuhlHOsX0ymF6R/vLk/UQVz3WHa6wygxI5oGTmDTv8wahFOSspdm" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="{% static 'login/css/login.css' %}">
+</head>
+<body>
+<!-- CONTENIDO DE LA PAGINA -->
+<div class="container">
+		<div class="modal-dialog text-center">
+	<div class="col-sd-8 main-section">
+		<div class="modal-content"> <!-- Contenido -->
+			
+			<div class="col-12">
+				<img href="{% static 'login/img/ief_logo.png' %}" class="user-img" style="width: 150px; height: 150px;">
+				<h3 style="color:white; font-family: mteboldi">INICIO DE SESION</h3>
+			</div>
+
+			<form class="col-12" id="login-form">
+				<div class="form-group">
+					<i class="fas fa-user"></i>
+					<input type="text" name="username" class="form-control" placeholder="Usuario o Correo Electronico">
+				</div>
+				<div class="form-group">
+					<i class="fas fa-lock"></i>
+					<input type="password" name="pass" class="form-control" placeholder="Contraseña">
+				</div>
+				<div class="form-check">
+					<label class="form-check-label" style="color:white;">
+						<input type="checkbox" class="form-check-input">Mantener Sesion Iniciada
+					</label>
+				</div>
+				<button type="submmit" class="btn" id="btn-ingresar"> <i class="fas fa-sign-in-alt"></i>INGRESAR</button>
+				
+			</form>
+			<h3 style="color:white; font-family: mteboldis" id="label-register">No tienes una cuenta?</h3>
+			<button type="submmit" class="btn" id="btn-registrar"><i class="fas fa-reply"></i>REGISTRARSE<a href="/welcome/register/"></a></button>
+			<div class="col-12 forgot">
+				<a href="Index_Login_ForgotPassword.html">Olvidaste tu contraseña?</a>
+			</div>
+
+		</div>
+</div>
+		 <!-- Fin del Contenido -->
+
+<script src="{% static 'login/js/login.js' %}"></script>
+</body>
+</html>

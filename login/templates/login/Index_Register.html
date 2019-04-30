@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Register</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	{% load static %}
+	<script src="{% static 'login/js/jquery-3.4.0.min.js' %}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.0/dist/jquery.validate.min.js"></script>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/solid.css" integrity="sha384-QokYePQSOwpBDuhlHOsX0ymF6R/vLk/UQVz3WHa6wygxI5oGTmDTv8wahFOSspdm" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="{% static 'login/css/register.css' %}">
+</head>
+<body>
+
+	<div class="container">
+				<img src="{% static 'login/img/ief_logo.png' %}" class="user-img" style="width: 150px; height: 150px;margin-left: 480px;margin-top: -120px;">
+				<h3 style="color:white; font-family: chunk;text-align: center;">FORMULARIO DE REGISTRO</h3>
+			<div class="row">
+				
+				<div class="col-lg-3"></div>
+
+				<div class="col-lg-6">
+					<div id="ui">
+						<form method='POST' action='/welcome/register/' class="form-group" id="register-form">	{% csrf_token %}
+								<div class="row">	
+									<div class="col-lg-6">
+										<label for="inputname">Nombre Completo:</label>
+										<input type="text" class="form-control" placeholder="Nombre Completo" name="name" required>
+									</div>
+
+								<div class="col-lg-6">
+										<label for="inputname">Apellido</label>
+										<input type="text" class="form-control" placeholder="Apellido" name="lname" required>
+									</div>
+											</div>
+
+										<label for="Email">Correo Electronico</label>
+										<input type="Email" class="form-control" placeholder="Correo Electronico" name="email" required>	
+								<label for="Email">Sexo</label>
+								<input list="sexo" name="sexo" class="datalist-input, form-control" placeholder="Seleccione Sexo..." required>
+    							<datalist id="sexo">
+        						<option value="Masculino" />
+        						<option value="Femenino" />
+    							</datalist>
+
+
+				<div class="row">
+						<div class="col-lg-6">
+						<label for="pwd">Contraseña</label>
+						<input type="password" maxlength="16" minlength="8" class="form-control" name="password" id="password" required>
+					</div>
+
+					<div class="col-lg-6">
+						<label for="pwd">Confirmar Contraseña</label>
+						<input type="password" maxlength="16" minlength="8" class="form-control" name="cfmPassword" required>
+					</div>
+												
+					<div class="col-lg-6">
+						<label>D.N.I</label>
+						<input type="text" class="form-control" placeholder="N° Documento" name="dni" id="dni" required>
+					</div>
+
+					<div class="col-lg-6">
+						<label>C.U.I.L</label>
+						<input type="text" class="form-control" placeholder="CUIL" name="cuil" id="cuil" required>
+					</div>
+
+					<div class="col-lg-6">
+						<label>Telefono</label>
+						<input type="tel" class="form-control" placeholder="(011) 0000-0000" required name="tel" id="tel">
+					</div>
+
+										<div class="col-lg-6">
+						<label>Direccion</label>
+						<input type="text" class="form-control" placeholder="Domicilio" name="dir" required>
+					</div>
+
+					<div class="col-lg-6">
+						<label>Pais</label>
+						<input list="country" name="country" class="datalist-input, form-control" placeholder="Seleccione Un Pais..." required>
+    <datalist id="country">
+        <option value="Argentina" />
+    </datalist>
+					</div>
+
+					<div class="col-lg-6">
+						<label>Provincia</label>
+						<input list="provincias" class="datalist-input, form-control" name="prov" placeholder="Seleccione Una Provincia..." required>
+						<datalist id="provincias">
+		 <option value="Buenos Aires">Bs. As.</option>
+          <option value="Catamarca">Catamarca</option>
+          <option value="Chaco">Chaco</option>
+          <option value="Chubut">Chubut</option>
+          <option value="Cordoba">Cordoba</option>
+          <option value="Corrientes">Corrientes</option>
+          <option value="Entre Rios">Entre Rios</option>
+          <option value="Formosa">Formosa</option>
+          <option value="Jujuy">Jujuy</option>
+          <option value="La Pampa">La Pampa</option>
+          <option value="La Rioja">La Rioja</option>
+          <option value="Mendoza">Mendoza</option>
+          <option value="Misiones">Misiones</option>
+          <option value="Neuquen">Neuquen</option>
+          <option value="Rio Negro">Rio Negro</option>
+          <option value="Salta">Salta</option>
+          <option value="San Juan">San Juan</option>
+          <option value="San Luis">San Luis</option>
+          <option value="Santa Cruz">Santa Cruz</option>
+          <option value="Santa Fe">Santa Fe</option>
+          <option value="Sgo. del Estero">Sgo. del Estero</option>
+          <option value="Tierra del Fuego">Tierra del Fuego</option>
+         <option value="Tucuman">Tucuman</option>
+						</datalist>
+					</div>
+
+					<div class="col-lg-6">
+						<label>Localidad</label>
+						<input type="text" class="form-control" placeholder="Localidad" name="loc" required>
+					</div>
+
+					<div class="col-lg-6">
+						<label>Codigo Postal</label>
+						<input type="text" pattern="[0-9]{4}" class="form-control" placeholder="Codigo Postal" name="cp" id="cp" required>
+					</div>
+
+					<div class="col-lg-12">
+								<label>¿Cual es Su Principal Interes en Nuestra Web?</label>
+								<select class="form-control" name="interest">
+									<option>Seleccionar Interes...</option>
+									<option>Descubrir Emprendimientos</option>
+									<option>Buscar Inversores</option>
+								</select>
+					</div>	
+
+					<div class="col-lg-12">
+						<div class="form-group">
+							<label for="biografia">Biografia</label>
+							<textarea class="form-control" rows="5" id="biografia" placeholder="Escriba una breve biografia..." maxlength="300" name="bio" required></textarea>
+						</div>
+					</div>
+
+
+					<div class="col-lg-12">
+							<div class="form-check-inline">
+							  <label class="form-check-label">
+							    <input type="checkbox" class="form-check-input" id="terminosycondiciones" style="margin-top: 30px;margin-bottom: 15px;">Acepto los <a href="#">Terminos y Condiciones</a> de I.E.F
+							  </label>
+							</div>
+					</div>
+
+								</div>
+
+	
+									<input type="submit" name="submit" value="CREAR CUENTA" class="btn btn-primary btn-block btn-lg" id="crearcuenta">
+
+						</form>
+
+
+					</div>
+				</div>
+
+				<div class="col-lg-3"></div>
+
+
+			</div>
+	</div>
+
+
+					
+
+
+
+
+<script type="text/javascript" src="{% static 'login/js/registro.js' %}"></script>
+
+
+</body>
+</html>

@@ -10,12 +10,17 @@ import json
 class Register(View):
     def get(self, request):
         form = RegisterForm()
-        return render(request, 'login/login.html', {'form': form, 'action': '/welcome/register/'})
+        return render(request, 'login/Index_Register.html')
 
     def post(self, request):
         #body_unicode = request.body.decode('utf-8')
         #body_data = json.loads(body_unicode)
-        user = Users(firstname=request.POST['firstname'], lastname=request.POST['lastname'], age=request.POST['age'], dni=request.POST['dni'], email=request.POST['email'], bio=request.POST['bio'], username=request.POST['username'], password=request.POST['password'])
+        user = Users(firstname=request.POST['name'], lastname=request.POST['lname'], 
+                     dni=request.POST['dni'], email=request.POST['email'], bio=request.POST['bio'], 
+                     password=request.POST['password'], sex=request.POST['sexo'],
+                     phone=request.POST['tel'], cuil=request.POST['cuil'], address=request.POST['dir'], 
+                     country=request.POST['country'], province=request.POST['prov'], location=request.POST['loc'], 
+                     cp=request.POST['cp'], interest=request.POST['interest'])
 
         user.save()
 
@@ -30,11 +35,11 @@ class Confirmation(View):
 class Login(View):
     def get(self, request):
         form = LoginForm()
-        return render(request, 'login/login.html', {'form': form, 'action': '/welcome/login/'})
+        return render(request, 'login/Index_Login.html', {'form': form, 'action': '/welcome/login/'})
 
     def post(self, request):
         try:
-            user = Users.objects.get(username=request.POST['username'], password=request.POST['password'])
+            user = Users.objects.get(email=request.POST['email'], password=request.POST['password'])
             return HttpResponse('Existe')
         except:
             return HttpResponse('Error, user not register')

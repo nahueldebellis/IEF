@@ -2,10 +2,10 @@ FROM python:3
 
 ENV PYTHONUNBUFFERED 1
 
-RUN mkdir /IEF
+RUN mkdir /proyect
 
-WORKDIR /IEF
-COPY requirements.txt /IEF/
+WORKDIR /proyect
+COPY requirements.txt /proyect/
 RUN pip install -r requirements.txt
 
-COPY . /IEF/
+COPY . /proyect/
