@@ -26,7 +26,7 @@ class Register(View):
 
         #email = EmailMessage('title', 'body', to=[email])
         #email.send()
-        return HttpResponse('registrado')
+        return render(request, 'login/Index_Login.html')
 
 class Confirmation(View):
     def post(self, request):
@@ -35,7 +35,7 @@ class Confirmation(View):
 class Login(View):
     def get(self, request):
         form = LoginForm()
-        return render(request, 'login/Index_Login.html', {'form': form, 'action': '/welcome/login/'})
+        return render(request, 'login/Index_Login.html')
 
     def post(self, request):
         try:
