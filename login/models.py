@@ -12,7 +12,7 @@ class Users(models.Model):
     email = models.CharField(max_length=20, default='nan')
     bio = models.CharField(max_length=200, default='nan')
     username = models.CharField(max_length=10, default='nan')
-    password = models.CharField(max_length=20, default='nan')
+    password = models.CharField(max_length=200, default='nan')
 
     phone=models.CharField(max_length=100, default='nan')
     cuil=models.CharField(max_length=100, default='nan')
