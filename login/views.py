@@ -1,32 +1,32 @@
-from django.shortcuts import render
-from django.core.mail import EmailMessage
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.views import View
 from .models import Users
-from .forms import RegisterForm, LoginForm
+
+import hashlib
 import json
 
 # Create your views here.
 class Register(View):
     def get(self, request):
-        form = RegisterForm()
         return render(request, 'login/Index_Register.html')
 
     def post(self, request):
-        #body_unicode = request.body.decode('utf-8')
-        #body_data = json.loads(body_unicode)
-        user = Users(firstname=request.POST['name'], lastname=request.POST['lname'], 
-                     dni=request.POST['dni'], email=request.POST['email'], bio=request.POST['bio'], 
-                     password=request.POST['password'], sex=request.POST['sexo'],
-                     phone=request.POST['tel'], cuil=request.POST['cuil'], address=request.POST['dir'], 
-                     country=request.POST['country'], province=request.POST['prov'], location=request.POST['loc'], 
-                     cp=request.POST['cp'], interest=request.POST['interest'])
-
-        user.save()
-
-        #email = EmailMessage('title', 'body', to=[email])
-        #email.send()
-        return HttpResponse('registrado')
+        try:
+            hash_pass = hashlib.new("sha1", b"%s" % (request.POST['password']))
+            user = Users(
+                firstname=request.POST['name'], lastname=request.POST['lname'], 
+                dni=request.POST['dni'], email=request.POST['email'], 
+                bio=request.POST['bio'], password=hash_pass, sex=request.POST['sexo'],
+                phone=request.POST['tel'], cuil=request.POST['cuil'], 
+                address=request.POST['dir'], country=request.POST['country'], 
+                province=request.POST['prov'], location=request.POST['loc'], 
+                cp=request.POST['cp'], interest=request.POST['interest']
+            )
+            user.save()
+            return redirect('/welcome/login/')
+        except:
+            return HttpResponse(status=500)
 
 class Confirmation(View):
     def post(self, request):
@@ -34,12 +34,19 @@ class Confirmation(View):
 
 class Login(View):
     def get(self, request):
-        form = LoginForm()
-        return render(request, 'login/Index_Login.html', {'form': form, 'action': '/welcome/login/'})
+        try:
+            if(request.session.get('user_session', 'none') != 'none'):
+                return HttpResponse('Perfil')
+            else:
+                return render(request, 'login/Index_Login.html', {'action': '/welcome/login/'})
+        except:
+            return HttpResponse(status=500)
 
     def post(self, request):
         try:
             user = Users.objects.get(email=request.POST['email'], password=request.POST['password'])
-            return HttpResponse('Existe')
+            hash_user = hashlib.new("sha1", b"%s" % (user.id))
+            request.session['user_session'] = hash_user
+            return render(request, 'Perfil')
         except:
-            return HttpResponse('Error, user not register')
+            return render(request, 'Error, user not register')
