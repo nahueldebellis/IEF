@@ -14,9 +14,30 @@
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/solid.css" integrity="sha384-QokYePQSOwpBDuhlHOsX0ymF6R/vLk/UQVz3WHa6wygxI5oGTmDTv8wahFOSspdm" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="{% static 'login/css/register.css' %}">
 </head>
 <body>
+<script>
+		let error = "{{error}}" || null;
+		if(error){
+			$.alert({
+				icon: "fas fa-envelope",
+				title: 'Email Incorrecto',
+				content: error,
+				theme: "supervan",
+				draggable: false,
+		
+				buttons: {
+					Volver: {
+						btnClass: "btn-blue",
+						text: "Aceptar",
+					}
+				},
+		
+			});
+		}
+	</script>
 
 	<div class="container">
 				<img src="{% static 'login/img/ief_logo.png' %}" class="user-img" style="width: 150px; height: 150px;margin-left: 480px;margin-top: -120px;">

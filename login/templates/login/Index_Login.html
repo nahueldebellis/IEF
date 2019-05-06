@@ -16,6 +16,46 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'login/css/login.css' %}">
 </head>
 <body>
+<script>
+	let error = "{{error}}" || null;
+	console.log(error);
+	if(error){
+		$.alert({
+			icon: "fas fa-times",
+			title: 'Email o contraseña incorrectos',
+			content: error,
+			theme: "supervan",
+			draggable: false,
+	
+			buttons: {
+				Volver: {
+					btnClass: "btn-blue",
+					text: "Aceptar",
+				}
+			},
+	
+		});
+	}
+	else{
+		$.alert({
+        icon: "fas fa-cookie",
+        title: 'COOKIES',
+        content: 'Nuestra web utiliza cookies para mejorar su experiencia en nuestra web. Esta Usted de Acuerdo?',
+        theme: "supervan",
+          draggable: false,
+
+        buttons: {
+        
+            Volver: {
+            	btnClass: "btn-blue",
+                  text: "Aceptar",
+                      }
+        },
+
+    });
+	}
+</script>
+
 <!-- CONTENIDO DE LA PAGINA -->
 <div class="container">
 		<div class="modal-dialog text-center">
@@ -23,18 +63,18 @@
 		<div class="modal-content"> <!-- Contenido -->
 			
 			<div class="col-12">
-				<img href="{% static 'login/img/ief_logo.png' %}" class="user-img" style="width: 150px; height: 150px;">
+				<img src="{% static 'login/img/ief_logo.png' %}" class="user-img" style="width: 150px; height: 150px;">
 				<h3 style="color:white; font-family: mteboldi">INICIO DE SESION</h3>
 			</div>
 
-			<form class="col-12" id="login-form">
+			<form action="/welcome/login/" method="POST" class="col-12" id="login-form">{% csrf_token %}
 				<div class="form-group">
 					<i class="fas fa-user"></i>
-					<input type="text" name="username" class="form-control" placeholder="Usuario o Correo Electronico">
+					<input type="text" name="email" class="form-control" placeholder="Correo Electronico">
 				</div>
 				<div class="form-group">
 					<i class="fas fa-lock"></i>
-					<input type="password" name="pass" class="form-control" placeholder="Contraseña">
+					<input type="password" name="password" class="form-control" placeholder="Contraseña">
 				</div>
 				<div class="form-check">
 					<label class="form-check-label" style="color:white;">
@@ -45,7 +85,7 @@
 				
 			</form>
 			<h3 style="color:white; font-family: mteboldis" id="label-register">No tienes una cuenta?</h3>
-			<button type="submmit" class="btn" id="btn-registrar"><i class="fas fa-reply"></i>REGISTRARSE<a href="/welcome/register/"></a></button>
+			<button type="submmit" class="btn" id="btn-registrar"><i class="fas fa-reply"></i><a href="/welcome/register/"></a>REGISTRARSE</a></button>
 			<div class="col-12 forgot">
 				<a href="Index_Login_ForgotPassword.html">Olvidaste tu contraseña?</a>
 			</div>
