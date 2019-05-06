@@ -1,3 +1,4 @@
+
  $("#register-form").validate({
            rules: {
                password: { 
@@ -123,47 +124,47 @@
     $("#tel").mask("(011) 0000-0000",{ "clearIncomplete": true })
 
     $("#tel").on("blur", function() {
-    var last = $(this).val().substr( $(this).val().indexOf("-") + 1 );
+        var last = $(this).val().substr( $(this).val().indexOf("-") + 1 );
 
-    if( last.length == 3 ) {
-        var move = $(this).val().substr( $(this).val().indexOf("-") - 1, 1 );
-        var lastfour = move + last;
-        var first = $(this).val().substr( 0, 9 );
+        if( last.length == 3 ) {
+          var move = $(this).val().substr( $(this).val().indexOf("-") - 1, 1 );
+          var lastfour = move + last;
+          var first = $(this).val().substr( 0, 9 );
 
-        $(this).val( first + '-' + lastfour );
-    }
-});
+          $(this).val( first + '-' + lastfour );
+        }
+    });
 
 
     $("#cp").mask("0000")
 
     $("#cp").on("blur", function() {
-    var last = $(this).val().substr( $(this).val().indexOf("-") + 1 );
+      var last = $(this).val().substr( $(this).val().indexOf("-") + 1 );
 
-    if( last.length == 3 ) {
-        var move = $(this).val().substr( $(this).val().indexOf("-") - 1, 1 );
-        var lastfour = move + last;
-        var first = $(this).val().substr( 0, 9 );
+      if( last.length == 3 ) {
+          var move = $(this).val().substr( $(this).val().indexOf("-") - 1, 1 );
+          var lastfour = move + last;
+          var first = $(this).val().substr( 0, 9 );
 
-        $(this).val( first + '-' + lastfour );
-    }
-});
+          $(this).val( first + '-' + lastfour );
+      }
+    });
 
     $("#dni").mask("00.000.000")
 
     $("#dni").on("blur", function() {
-    var last = $(this).val().substr( $(this).val().indexOf("-") + 1 );
+      var last = $(this).val().substr( $(this).val().indexOf("-") + 1 );
 
-    if( last.length == 3 ) {
-        var move = $(this).val().substr( $(this).val().indexOf("-") - 1, 1 );
-        var lastfour = move + last;
-        var first = $(this).val().substr( 0, 9 );
+      if( last.length == 3 ) {
+          var move = $(this).val().substr( $(this).val().indexOf("-") - 1, 1 );
+          var lastfour = move + last;
+          var first = $(this).val().substr( 0, 9 );
 
-        $(this).val( first + '-' + lastfour );
-    }
-});
+          $(this).val( first + '-' + lastfour );
+      }
+    });
 
-        $("#cuil").mask("00-00000000-0")
+    $("#cuil").mask("00-00000000-0")
 
     $("#cuil").on("blur", function() {
     var last = $(this).val().substr( $(this).val().indexOf("-") + 1 );
@@ -175,23 +176,25 @@
 
         $(this).val( first + '-' + lastfour );
     }
+
 });
+
 
 /* BOTON CREAR CUENTA, CONFIRMACION DE TERMINOS Y CONDICIONES, ALERTA CONFIRMACION*/
 
     var terminos = $("#terminosycondiciones");
 
-    $("#crearcuenta").attr("disabled", "disabled");
+    $("#crearcuenta").attr("disabled", "disable");
 
     terminos.click(function() {
         if ($(this).is(":checked")) {
             $("#crearcuenta").removeAttr("disabled");
         } else {
-            $("#crearcuenta").attr("disabled", "disabled");
+            $("#crearcuenta").attr("disabled", "disable");
         }
     });
 
-    $("#crearcuenta").click(function() {
+    $("#crearcuenta").submit(function() {
            $.alert({
           icon: "fas fa-check-circle",
         columnClass: 'medium',
@@ -206,7 +209,7 @@
                   text: "Volver Al Inicio",
                   btnClass: "btn-blue",
             action: function() {
-                    window.open("Index_Login.html");
+                    window.open("/welcome/login/");
                      window.close();
                       }
                       }
