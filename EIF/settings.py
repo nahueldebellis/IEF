@@ -25,7 +25,7 @@ SECRET_KEY = '2km*705+-61rs+da)(n%lakb2)txz8ekjak@2zno-z6paeitne'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', 'nhdb.ddns.net',]
+ALLOWED_HOSTS = ['localhost', 'ief.ddns.net',]
 
 
 # Application definition
