@@ -13,11 +13,12 @@ class Register(View):
 
     def post(self, request):
         user_exist = Users.objects.get(email=request.POST['email'])
+        hash_pass = hashlib.new("sha1", b"%s" % (request.POST['password']))
         if not user_exist:
             user = Users(
                 firstname=request.POST['name'], lastname=request.POST['lname'], 
                 dni=request.POST['dni'], email=request.POST['email'], bio=request.POST['bio'], 
-                password=request.POST['password'], sex=request.POST['sexo'],
+                password=hash_pass, sex=request.POST['sexo'],
                 phone=request.POST['tel'], cuil=request.POST['cuil'], address=request.POST['dir'], 
                 country=request.POST['country'], province=request.POST['prov'], location=request.POST['loc'], 
                 cp=request.POST['cp'], interest=request.POST['interest']
